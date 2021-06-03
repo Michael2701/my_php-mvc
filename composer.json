@@ -1,0 +1,15 @@
+{
+    "name": "michael/template_php",
+    "authors": [
+        {
+            "name": "Michael",
+            "email": "michaelsilianov@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\": "./app/"
+        }
+    }
+}
