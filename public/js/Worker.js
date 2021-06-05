@@ -57,11 +57,9 @@ export default class Worker extends ClassInterface{
                     break;
                 case 'delete_worker':
                     this.deleteCustomer();
-                    this.loadCustomers();
                     break;               
             }
         });
-
     }
 
     addSubmitEvent(){
@@ -82,9 +80,10 @@ export default class Worker extends ClassInterface{
                 url:url,
                 success: res => {
                     const result = JSON.parse(res);
-
+                    
                     if(result.success)
-                        this.loadCustomers();
+                        this.onLoad();
+                        
                     alert(result.message);
                 },
                 error: err => {
@@ -97,8 +96,6 @@ export default class Worker extends ClassInterface{
         });
     }
 
-
-    
     updateCustomer(type, id){
         let worker = null;
         if(type == 'update_worker'){
@@ -113,7 +110,6 @@ export default class Worker extends ClassInterface{
             this.$workers_form.find('input[name=email]').val(worker.email);
             this.$workers_form.find('input[name=id]').val(worker.id);
         }
-        // $('#WorkersModal').modal('show');
     }
 
     deleteCustomer(){
@@ -122,6 +118,7 @@ export default class Worker extends ClassInterface{
                 method: 'GET',
                 url:'/customers/${id}/delete',
                 success: rec => {
+                    this.onLoad();
                     alert("Customer deleted");
                 },
                 error: err => {

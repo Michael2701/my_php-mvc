@@ -7,7 +7,6 @@ export default class Department extends ClassInterface{
         this.matches = matches;
     }
     onLoad = () => {
-        console.log(this.matches);
         this.root.html("<h1>Department</h1>");
     }    
 }
