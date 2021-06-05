@@ -1,8 +1,8 @@
 "use strict"
-import Worker from './Worker.js';
-import Department from './Department.js';
-import  Routing from '../js/Routing.js';
-import Route from './Route.js';
+import Worker from './modules/Worker.js';
+import Department from './modules/Department.js';
+import  Routing from './core/Routing.js';
+import Route from './core/Route.js';
 
 const $root = $('#root');
 const routing = new Routing();
