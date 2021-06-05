@@ -1,12 +1,13 @@
 export default class Route{
-    constructor(path, cls){
+    constructor(path, cls, root){
         this.path = path;
+        this.root = root;
         this.matcher = new RegExp(this.path.replace(/:[^\s/]+/g, '([\\w-]+)'));
         this.cls = cls;
     }
 
     onPathMatch = (matches) => {
-        this.cls.onLoad(matches);
+        (new this.cls(this.root, matches)).onLoad();
     }
 
     getMatcher = () => {

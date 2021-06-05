@@ -35,7 +35,8 @@ class Router {
         }
     }
 
-    public static function navigate($callback){
+    public static function navigate($callback)
+    {
         $reqUrl = $_SERVER['REQUEST_URI'];
         $reqMet = $_SERVER['REQUEST_METHOD'];
 

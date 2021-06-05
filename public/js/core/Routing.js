@@ -18,11 +18,23 @@ export default class Routing{
             return this.matches;
         });
 
+        try{
+            this.matches.shift();
+            delete this.matches['index'];
+            delete this.matches['input'];
+            delete this.matches['groups'];
+        }
+        catch(Exception){}
+
         if(this.match.length > 0) this.match[0].onPathMatch(this.matches);
     }
 
-    onLoad(hash,cls){
+    onLoad = (hash,cls) => {
         window.location.hash = `#${hash}`;
         cls.onLoad();
+    }
+
+    routesList = () => {
+
     }
 }
