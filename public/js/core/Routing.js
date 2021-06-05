@@ -12,6 +12,7 @@ export default class Routing{
     
     locationHashChanged = () => {
         this.path = window.location;
+        
         this.match = this.routes.filter(route => {
             this.matches = this.path.hash.substring(1).match(route.getMatcher()); 
             return this.matches;

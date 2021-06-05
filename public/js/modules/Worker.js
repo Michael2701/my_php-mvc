@@ -56,7 +56,7 @@ export default class Worker extends ClassInterface{
                     this.updateCustomer(type, worker_id);
                     break;
                 case 'delete_worker':
-                    this.deleteCustomer();
+                    this.deleteCustomer(worker_id);
                     break;               
             }
         });
@@ -112,11 +112,11 @@ export default class Worker extends ClassInterface{
         }
     }
 
-    deleteCustomer(){
+    deleteCustomer(id){
         if(confirm('Are you sure you want to delete this customer?')){
             $.ajax({
                 method: 'GET',
-                url:'/customers/${id}/delete',
+                url:`/workers/${id}/delete`,
                 success: rec => {
                     this.onLoad();
                     alert("Customer deleted");

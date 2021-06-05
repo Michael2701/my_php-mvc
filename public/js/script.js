@@ -1,7 +1,10 @@
 "use strict"
+import jquery from './../node_modules/jquery/dist/jquery.min.js';
+import {} from './../node_modules/bootstrap/dist/js/bootstrap.min.js';
+import Mustache from './../node_modules/mustache/mustache.min.js';
 import Worker from './modules/Worker.js';
 import Department from './modules/Department.js';
-import  Routing from './core/Routing.js';
+import Routing from './core/Routing.js';
 import Route from './core/Route.js';
 
 const $root = $('#root');
