@@ -1,14 +1,21 @@
+import ClassInterface from "./ClassInterface.js";
 
-class Customers{
-    headers = ["Id", "First Name", "Last Name", "Address", "Email", "Phone", "", ""];
+export default class Worker extends ClassInterface{
+    headers = ["Id", "Department", "First Name", "Last Name", "Address", "Email", "Phone", "", ""];
     $workers_form = $('#workers_form');
 
-    loadCustomers(){
+    constructor(root, matches = null){
+        super();
+        this.root = root;
+        this.matches = matches;
+        this.addSubmitEvent();
+    }
+
+    onLoad(){
         $.ajax({
             method: 'GET',
             url: '/workers/show',
             success: res => {
-                console.log(typeof res);
                 this.workers = JSON.parse(res);
                 this.renderTable(this.workers);
                 this.addButtonsEvents();
@@ -24,6 +31,7 @@ class Customers{
         data.forEach(dt => {
             html += `<tr>`;
             html += `<td>${dt.id}</td>`;
+            html += `<td>${dt.department_name}</td>`;
             html += `<td>${dt.first_name}</td>`;
             html += `<td>${dt.last_name}</td>`;
             html += `<td>${dt.address}</td>`;
@@ -34,7 +42,7 @@ class Customers{
             html += `</tr>`;
         });
 
-        $root.html(html);
+        this.root.html(html);
     }
 
     addButtonsEvents(){
@@ -53,6 +61,10 @@ class Customers{
                     break;               
             }
         });
+
+    }
+
+    addSubmitEvent(){
         $('#submit_workers').on('click', (e) => {
 
             const form_data = $("#workers_form").serializeArray();
@@ -63,15 +75,17 @@ class Customers{
             });
 
             const url = worker.id == "" ? "/workers/create" : `/workers/${worker.id}/update`; 
-            const message = worker.id == "" ? "worker created" : "worker updated";
             delete worker.id;
 
             $.post({
                 data: worker,
                 url:url,
-                success: rec => {
-                    this.loadCustomers();
-                    alert(message);
+                success: res => {
+                    const result = JSON.parse(res);
+
+                    if(result.success)
+                        this.loadCustomers();
+                    alert(result.message);
                 },
                 error: err => {
                     alert("Something went wrong")
@@ -83,6 +97,8 @@ class Customers{
         });
     }
 
+
+    
     updateCustomer(type, id){
         let worker = null;
         if(type == 'update_worker'){

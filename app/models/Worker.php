@@ -40,6 +40,3 @@ class Worker extends Model{
     }
 
 }
-
-// $customer = Customer::instance();
-// print_r($customer::select("SELECT * FROM customers LIMIT 1"));

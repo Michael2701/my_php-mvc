@@ -61,9 +61,6 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
             crossorigin="anonymous"></script>
 
-    <script>
-            <?php include(__DIR__."/../../../public/js/Workers.js"); ?>
-            <?php include(__DIR__."/../../../public/js/script.js"); ?>
-    </script>
+    <script type="module" src="<?="./js/script.js"?>"></script>
 </body>
 </html>
