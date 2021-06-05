@@ -14,7 +14,6 @@ class WorkerController extends Controller{
     public function showWorkers()
     {
         $workers = $this->worker_model::select("SELECT * FROM workers LEFT JOIN department ON workers.department_id=department.id");
-        // $workers = $this->worker_model::select("SELECT * FROM workers");
         echo json_encode($workers);
         
     }

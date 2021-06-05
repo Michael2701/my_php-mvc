@@ -2,12 +2,16 @@
 namespace app\models;
 use app\models\Model;
 
-class Customer extends Model{
+class Department extends Model{
+    private function __construct(){}
 
-
+    public static function Instance() : ?Department
+    {
+        if(!self::$instance)
+          self::$instance = new Department();
+       
+        return self::$instance;        
+    }
 
 
 }
-
-// $customer = Customer::instance();
-// print_r($customer::select("SELECT * FROM customers LIMIT 1"));
